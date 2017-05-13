@@ -8,13 +8,58 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>母亲节快乐！</title>
         <link rel="stylesheet" href="/mdl/material.min.css">
-        <link rel="stylesheet" href="/mdl/materialICO.css">
         <link rel="shortcut icon" type="image/x-icon" href="/images/heart.ico" media="screen" />
-        <script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
-        <script type="text/javascript" src="/js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
         <script async src="/mdl/material.min.js"></script>
-        <script async type="text/javascript" src="/js/bootstrap.min.js"></script>
     </head>
-    <body>
+    <body style="background-color:rgba(253,224,125,0.91)">
+        <audio id="bg" src="/gndx.mp3" autoplay></audio>
+        <div class="mdl-grid" style="height:100vh;position:relative">
+            <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-phone" style="text-align:center;">
+                <img src="/images/heart.ico" style="display:inline-block;margin:30% auto;left:50%;height:40%"></img>
+            </div>
+            <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-phone" style="position:relative">
+                <h1 style="width:30vw;height:10vh;color:#ffffff;font-size:5vw;text-align=center;margin: auto;position: absolute;top: 0; left: 0;bottom: 0; right: 0;">
+                    母亲节快乐！
+                </h1>
+            </div>
+        </div>
+        <footer class="mdl-mini-footer">
+          <div class="mdl-mini-footer__left-section">
+            <div class="mdl-logo">Title</div>
+            <ul class="mdl-mini-footer__link-list">
+              <li><a href="#">Help</a></li>
+              <li><a href="#">Privacy & Terms</a></li>
+                <button id="toggle-music" class="mdl-button mdl-js-button mdl-button--raised" type="button">音乐</button>
+                <div id="music-toggle-msg" class="mdl-js-snackbar mdl-snackbar">
+                  <div class="mdl-snackbar__text"></div>
+                  <button class="mdl-snackbar__action" type="button"></button>
+                </div>
+                <script>
+                    (function() {
+                      'use strict';  
+                      window['musicState'] = true;
+                      var snackbarContainer = document.querySelector('#music-toggle-msg');
+                      var showSnackbarButton = document.querySelector('#toggle-music');
+                      showSnackbarButton.addEventListener('click', function() {
+                        'use strict';
+                        window['musicState']=!window['musicState'];
+                        if(!window['musicState']){
+                            document.getElementById('bg').pause();
+                        }else{
+                            document.getElementById('bg').play();
+                        }
+                        var data = {
+                          message: window['musicState']?'音乐播放中':'音乐已暂停',
+                          timeout: 1000,
+                        };
+                        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                      });
+                    }());
+                </script>
+            </ul>
+          </div>
+        </footer>
     </body>
 </html>
